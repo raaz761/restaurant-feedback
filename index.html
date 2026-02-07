@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Feedback</title>
+    <title>Efzin Fresh | Customer Feedback</title>
+
     <style>
         * {
             margin: 0;
@@ -12,8 +13,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(180deg, #f3f7f4, #e8f1ec);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,19 +23,19 @@
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            background: #ffffff;
+            border-radius: 24px;
+            max-width: 520px;
             width: 100%;
-            padding: 40px;
-            animation: fadeIn 0.5s ease-in;
+            padding: 42px 36px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+            animation: fadeIn 0.6s ease;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -44,18 +45,36 @@
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
-        .header h1 {
-            color: #333;
-            font-size: 28px;
+        .logo {
+            max-width: 120px;
             margin-bottom: 10px;
         }
 
-        .header p {
-            color: #666;
-            font-size: 14px;
+        /* ENHANCED TAGLINE */
+        .tagline {
+            margin-top: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            font-style: italic;
+            color: #6b8576;
+            letter-spacing: 1.2px;
+            opacity: 0;
+            animation: taglineFade 1.2s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes taglineFade {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-group {
@@ -64,26 +83,29 @@
 
         label {
             display: block;
-            color: #333;
-            font-weight: 600;
             margin-bottom: 8px;
             font-size: 14px;
+            font-weight: 600;
+            color: #2f4f3f;
         }
 
-        input, textarea {
+        input,
+        textarea {
             width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1.8px solid #dce7df;
             font-size: 15px;
+            background: #f9fbfa;
             transition: all 0.3s ease;
-            font-family: inherit;
         }
 
-        input:focus, textarea:focus {
+        input:focus,
+        textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: #ffffff;
+            border-color: #3fa66c;
+            box-shadow: 0 0 0 4px rgba(63, 166, 108, 0.12);
         }
 
         textarea {
@@ -93,37 +115,49 @@
 
         .submit-btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
             margin-top: 10px;
+            padding: 15px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #3fa66c, #2e8b57);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
+            box-shadow: 0 14px 30px rgba(46, 139, 87, 0.35);
         }
 
         .submit-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
+        }
+
+        .error {
+            margin-top: 6px;
+            font-size: 13px;
+            color: #d9534f;
+            display: none;
+        }
+
+        .error.active {
+            display: block;
+        }
+
+        .form-content.hidden {
+            display: none;
         }
 
         .thank-you {
             display: none;
             text-align: center;
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.6s ease;
         }
 
         .thank-you.active {
@@ -131,176 +165,127 @@
         }
 
         .thank-you-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
+            font-size: 64px;
+            margin-bottom: 18px;
         }
 
         .thank-you h2 {
-            color: #333;
-            font-size: 28px;
+            font-size: 30px;
+            color: #1f3d2b;
             margin-bottom: 10px;
         }
 
         .thank-you p {
-            color: #666;
             font-size: 16px;
+            color: #5f7c6b;
             line-height: 1.6;
-        }
-
-        .form-content.hidden {
-            display: none;
-        }
-
-        .error {
-            color: #e74c3c;
-            font-size: 13px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error.active {
-            display: block;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="form-content">
-            <div class="header">
-                <h1>We'd Love Your Feedback!</h1>
-                <p>Help us serve you better</p>
+
+<div class="container">
+
+    <div class="form-content">
+        <div class="header">
+            <!-- Replace logo.png with your actual logo file or URL -->
+            <img src="logo.png" alt="Efzin Fresh Logo" class="logo">
+            <div class="tagline">The Art of Living Well.</div>
+        </div>
+
+        <form id="feedbackForm">
+
+            <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" required>
+                <div class="error" id="nameError">Please enter your name</div>
             </div>
 
-            <form id="feedbackForm">
-                <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
-                    <div class="error" id="nameError">Please enter your name</div>
-                </div>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" required>
+                <div class="error" id="emailError">Please enter a valid email</div>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                    <div class="error" id="emailError">Please enter a valid email</div>
-                </div>
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" required>
+                <div class="error" id="phoneError">Please enter your phone number</div>
+            </div>
 
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required>
-                    <div class="error" id="phoneError">Please enter your phone number</div>
-                </div>
+            <div class="form-group">
+                <label for="message">Your Feedback *</label>
+                <textarea id="message" required placeholder="Tell us about your experience..."></textarea>
+                <div class="error" id="messageError">Please share your feedback</div>
+            </div>
 
-                <div class="form-group">
-                    <label for="message">Your Feedback *</label>
-                    <textarea id="message" name="message" required placeholder="Tell us about your experience..."></textarea>
-                    <div class="error" id="messageError">Please share your feedback</div>
-                </div>
+            <button class="submit-btn" id="submitBtn" type="submit">
+                Submit Feedback
+            </button>
 
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
-            </form>
-        </div>
-
-        <div class="thank-you" id="thankYou">
-            <div class="thank-you-icon">🎉</div>
-            <h2>Thank You!</h2>
-            <p>We appreciate you taking the time to share your feedback. Your input helps us improve and serve you better!</p>
-        </div>
+        </form>
     </div>
 
-    <script>
-        // Your Google Apps Script Web App URL
-        const FORM_SUBMISSION_URL = 'https://script.google.com/macros/s/AKfycbxFJKTzAKBd7o1bU3N2VoBp0suMiB-NsfP49rN67L0AMeo0tE3elKRK-6_c7tyK1NY/exec';
+    <div class="thank-you" id="thankYou">
+        <div class="thank-you-icon">🌿</div>
+        <h2>Thank You!</h2>
+        <p>
+            We appreciate you taking the time to share your experience.
+            Your feedback helps us grow better every day.
+        </p>
+    </div>
 
-        const form = document.getElementById('feedbackForm');
-        const formContent = document.querySelector('.form-content');
-        const thankYou = document.getElementById('thankYou');
-        const submitBtn = document.getElementById('submitBtn');
+</div>
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+<script>
+    const FORM_SUBMISSION_URL =
+        'https://script.google.com/macros/s/AKfycbxFJKTzAKBd7o1bU3N2VoBp0suMiB-NsfP49rN67L0AMeo0tE3elKRK-6_c7tyK1NY/exec';
 
-            // Clear previous errors
-            document.querySelectorAll('.error').forEach(err => err.classList.remove('active'));
+    const form = document.getElementById('feedbackForm');
+    const formContent = document.querySelector('.form-content');
+    const thankYou = document.getElementById('thankYou');
+    const submitBtn = document.getElementById('submitBtn');
 
-            // Get form data
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                message: document.getElementById('message').value.trim(),
-                timestamp: new Date().toISOString()
-            };
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            // Basic validation
-            let isValid = true;
+        document.querySelectorAll('.error').forEach(err =>
+            err.classList.remove('active')
+        );
 
-            if (!formData.name) {
-                document.getElementById('nameError').classList.add('active');
-                isValid = false;
-            }
+        const data = {
+            name: name.value.trim(),
+            email: email.value.trim(),
+            phone: phone.value.trim(),
+            message: message.value.trim(),
+            timestamp: new Date().toISOString()
+        };
 
-            if (!formData.email || !validateEmail(formData.email)) {
-                document.getElementById('emailError').classList.add('active');
-                isValid = false;
-            }
+        let valid = true;
 
-            if (!formData.phone) {
-                document.getElementById('phoneError').classList.add('active');
-                isValid = false;
-            }
+        if (!data.name) { nameError.classList.add('active'); valid = false; }
+        if (!data.email) { emailError.classList.add('active'); valid = false; }
+        if (!data.phone) { phoneError.classList.add('active'); valid = false; }
+        if (!data.message) { messageError.classList.add('active'); valid = false; }
 
-            if (!formData.message) {
-                document.getElementById('messageError').classList.add('active');
-                isValid = false;
-            }
+        if (!valid) return;
 
-            if (!isValid) return;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
 
-            // Disable submit button
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-
-            try {
-                // Submit to Google Sheets
-                await submitToGoogleSheets(formData);
-
-                // Show thank you message
-                formContent.classList.add('hidden');
-                thankYou.classList.add('active');
-
-                // Reset form
-                form.reset();
-
-            } catch (error) {
-                console.error('Submission error:', error);
-                alert('Sorry, there was an error submitting your feedback. Please try again.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Feedback';
-            }
+        await fetch(FORM_SUBMISSION_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         });
 
-        function validateEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
+        formContent.classList.add('hidden');
+        thankYou.classList.add('active');
+        form.reset();
+    });
+</script>
 
-        // Submit to Google Sheets using Google Apps Script
-        async function submitToGoogleSheets(data) {
-            const response = await fetch(FORM_SUBMISSION_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-            
-            // Note: With 'no-cors' mode, we can't read the response
-            // but the data will still be sent to Google Sheets
-            // We wait a moment to ensure the request completes
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            return response;
-        }
-    </script>
 </body>
 </html>
